@@ -1,13 +1,13 @@
 import express from 'express';
 import AppError from '../utils/appError.js';
 
-//---------------------------------------------------------------------------------------------------
+// handle Cast ------------------------------------------------
 const handleCastErrorDB = (err) => {
   const message = `Invalid ${err.path}: ${err.value}.`;
   return new AppError(message, 400);
 };
 
-//---------------------------------------------------------------------------------------------------
+// handle Duplicate -------------------------------------------------------------------
 const handleDuplicateFieldsDB = (err) => {
   if (!err.keyValue) {
     return new AppError('Duplicate field value detected!', 400);
@@ -19,24 +19,24 @@ const handleDuplicateFieldsDB = (err) => {
   return new AppError(message, 400);
 };
 
-//---------------------------------------------------------------------------------------------------
+// handle Validation --------------------------------------------------------------------------------
 const handleValidationErrorDB = (err) => {
   const errors = Object.values(err.errors).map((el) => el.message);
   const message = `Invalid input data. ${errors.join('. ')}`;
   return new AppError(message, 400);
 };
 
-//---------------------------------------------------------------------------------------------------
+// handle JWT Error ---------------------------------------------------------------------------
 const handleJWTError = () => {
-  return new AppError('The user no longer exists.', 401); // ✅ Add return
+  return new AppError('The user no longer exists.', 401);
 };
 
-//---------------------------------------------------------------------------------------------------
+// handle JWT Expired Error -------------------------------------------------------------------------
 const handleJWTExpiredError = () => {
   return new AppError(' your Token has expired !!! please log in again ', 401);
 };
 
-//---------------------------------------------------------------------------------------------------
+// handle JWT Expired Error -----------------------------------------------------------------------------
 const sendErrorDev = (err, req, res) => {
   if (req.originalUrl.startsWith('/api')) {
     res.status(err.statusCode).json({
@@ -54,7 +54,7 @@ const sendErrorDev = (err, req, res) => {
   }
 };
 
-//---------------------------------------------------------------------------------------------------
+// send Error Pro -------------------------------------------------------------------------------
 const sendErrorPro = (err, res) => {
   if (err.isOperational) {
     res.status(err.statusCode).json({
