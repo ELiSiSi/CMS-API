@@ -117,5 +117,5 @@ export const uploadSingleFile = (req, res, next) => {
   });
 };
 
-// ── Export الـ constants عشان الـ controller يستخدمها ─────────────────
+// ── Export الـ constants علشان الـ cont  roller يستخدمها ─────────────────
 export { Extensions, mimeTypes, maxSize };

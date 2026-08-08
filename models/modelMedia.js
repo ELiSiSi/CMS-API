@@ -5,7 +5,7 @@ const mediaSchema = new mongoose.Schema(
         uuid: {
             type: String,
             required: true,
-            unique: true,
+index: true,
         },
 
         uploader_id: {
@@ -79,7 +79,6 @@ const mediaSchema = new mongoose.Schema(
 );
 
 // ── Indexes ───────────────────────────────────────────────────────────
-mediaSchema.index({ uuid: 1 });
 mediaSchema.index({ uploader_id: 1 });
 mediaSchema.index({ entity_type: 1, entity_id: 1 });
 mediaSchema.index({ status: 1, created_at: 1 });

@@ -36,7 +36,6 @@ const userSchema = new mongoose.Schema(
 
     passwordChangedAt: Date,
 
-    // OTP / Forgot Password ──────────────────────────────────------------------------------
     passwordResetOTP: { type: String, select: false },
     passwordResetOTPExpires: { type: Date, select: false },
     passwordResetToken: { type: String, select: false },
@@ -45,7 +44,6 @@ const userSchema = new mongoose.Schema(
     failedLoginAttempts: { type: Number, default: 0 },
     lockUntil: { type: Date, default: null },
 
-    // MFA ────────────────────────────────────────────────────--
     mfaEnabled: { type: Boolean, default: false },
     mfaSecret: { type: String, select: false, default: null },
     mfaBackupCodes: { type: [String], select: false, default: [] },
